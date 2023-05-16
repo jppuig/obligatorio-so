@@ -1,4 +1,4 @@
-05/05/2023 La carga de euros fue exitosa
-05/05/2023 Carga de dolares no exitosa: no hay informacion de la divisa en el dia
-05/05/2023 Carga de pesos argentinos no exitosa: no hay informacion de la divisa en el dia
-05/05/2023 Carga de reales no exitosa: no hay informacion de la divisa en el dia
+16/05/2023 La carga de euros fue exitosa
+16/05/2023 Carga de dolares no exitosa: no hay informacion de la divisa en el dia
+16/05/2023 Carga de pesos argentinos no exitosa: no hay informacion de la divisa en el dia
+16/05/2023 Carga de reales no exitosa: no hay informacion de la divisa en el dia
