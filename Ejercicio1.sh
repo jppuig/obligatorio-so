@@ -8,7 +8,8 @@ COMPRA="$SALIDA/CompraDeDivisas.txt"
 VENTA="$SALIDA/VentaDeDivisas.txt"
 
 COTIZACION=(0 0 0 0 0 0 0 0) #Orden del array: venta compra para las monedas Euro, Dolar, Arg, Real
-BLOQUEO="false"
+BLOQUEOCOMPRA="false"
+BLOQUEOVENTA="false"
 
 cargarDivisas() {
 	hoy=$(date +%d/%m/%Y)
@@ -105,55 +106,69 @@ menuMoneda() {
 }
 
 comprarDivisas(){
-	hoy=$(date +%d/%m/%Y)
-	menuMoneda
-	read moneda
-	echo "Ingrese monto de la moneda a comprar (solo numeros enteros):"
-	read cantMoneda
-	esta=true # Accede a una divisa que existe en el dia
+	if [ "$BLOQUEOCOMPRA" = "false" ]; then
+		hoy=$(date +%d/%m/%Y)
+		menuMoneda
+		read moneda
+		while [ $moneda -lt 1 ] || [ $moneda -gt 4 ]; do
+			echo "Moneda ingresada incorrecta, vuelva a intentarlo"
+			read moneda
+		done
 
-	if [ "$moneda" = "1" ]; then
-		if [ "${COTIZACION[1]}" = "0" ]; then # Chequea que la venta no sea 0, si es, es pq no hay cotizacion
-			esta=false
-			echo "No hay cotizacion del euro para el dia de hoy"
-		else
-			divisa="euros"
-			cot=${COTIZACION[1]#"${COTIZACION[1]%%[!0]*}"}
-		fi
-	elif [ "$moneda" = "2" ]; then
-		if [ "${COTIZACION[3]}" = "0" ]; then
-			esta=false
-			echo "No hay cotizacion del dolar para el dia de hoy"
-		else
-			divisa="dolares"
-			cot=${COTIZACION[3]#"${COTIZACION[3]%%[!0]*}"}
-		fi
-	elif [ "$moneda" = "3" ];then
-		if [ "${COTIZACION[5]}" = "0" ]; then
-			esta=false
-			echo "No hay cotizacion del peso argentino para el dia de hoy"
-		else
-			divisa="pesos argentinos"
-			cot=${COTIZACION[5]#"${COTIZACION[5]%%[!0]*}"}
-		fi
-	elif [ "$moneda" = "4" ];then
-		if [ "${COTIZACION[7]}" = "0" ];then
-			esta=false
-			echo "No hay cotizacion del real para el dia de hoy"
-		else
-			divisa="reales"
-			cot=${COTIZACION[7]#"${COTIZACION[7]%%[!0]*}"}
-		fi
-	fi
+		echo "Ingrese monto de la moneda a vender (solo numeros enteros):"
+		read cantMoneda
+		while [ $cantMoneda -lt 1 ]; do
+			echo "Monto ingresado incorrecto, debe ser mayor a 0"
+			read cantMoneda
+		done
 
-	if [ "$esta" = "true" ]; then
-		uru=$(($cot * $cantMoneda))
-		uruDecimal=$(($uru % 100))
-		uruEntero=$(($uru / 100))
+		esta=true # Accede a una divisa que existe en el dia
 
-		echo "El monto a comprar en pesos uruguayos es de $uruEntero,$uruDecimal"
-		echo "$hoy - Compra de $cantMoneda $divisa por $uruEntero,$uruDecimal pesos uruguayos" >> $COMPRA
-		echo "Compra exitosa"
+		if [ "$moneda" = "1" ]; then
+			if [ "${COTIZACION[1]}" = "0" ]; then # Chequea que la venta no sea 0, si es, es pq no hay cotizacion
+				esta=false
+				echo "No hay cotizacion del euro para el dia de hoy"
+			else
+				divisa="euros"
+				cot=${COTIZACION[1]#"${COTIZACION[1]%%[!0]*}"}
+			fi
+		elif [ "$moneda" = "2" ]; then
+			if [ "${COTIZACION[3]}" = "0" ]; then
+				esta=false
+				echo "No hay cotizacion del dolar para el dia de hoy"
+			else
+				divisa="dolares"
+				cot=${COTIZACION[3]#"${COTIZACION[3]%%[!0]*}"}
+			fi
+		elif [ "$moneda" = "3" ];then
+			if [ "${COTIZACION[5]}" = "0" ]; then
+				esta=false
+				echo "No hay cotizacion del peso argentino para el dia de hoy"
+			else
+				divisa="pesos argentinos"
+				cot=${COTIZACION[5]#"${COTIZACION[5]%%[!0]*}"}
+			fi
+		elif [ "$moneda" = "4" ];then
+			if [ "${COTIZACION[7]}" = "0" ];then
+				esta=false
+				echo "No hay cotizacion del real para el dia de hoy"
+			else
+				divisa="reales"
+				cot=${COTIZACION[7]#"${COTIZACION[7]%%[!0]*}"}
+			fi
+		fi
+
+		if [ "$esta" = "true" ]; then
+			uru=$(($cot * $cantMoneda))
+			uruDecimal=$(($uru % 100))
+			uruEntero=$(($uru / 100))
+
+			echo "El monto a comprar en pesos uruguayos es de $uruEntero,$uruDecimal"
+			echo "$hoy - Compra de $cantMoneda $divisa por $uruEntero,$uruDecimal pesos uruguayos" >> $COMPRA
+			echo "Compra exitosa"
+		fi
+	else
+		echo "Las transacciones de compra estan bloqueadas"
 	fi
 
 	echo ""
@@ -161,55 +176,69 @@ comprarDivisas(){
 }
 
 ventaDivisas(){
-	hoy=$(date +%d/%m/%Y)
-	menuMoneda
-	read moneda
-	echo "Ingrese monto de la moneda a vender (solo numeros enteros):"
-	read cantMoneda
-	esta=true # Accede a una divisa que existe en el dia
+	if [ "$BLOQUEOVENTA" = "false" ]; then
+		hoy=$(date +%d/%m/%Y)
+		menuMoneda
+		read moneda
+		while [ $moneda -lt 1 ] || [ $moneda -gt 4 ]; do
+			echo "Moneda ingresada incorrecta, vuelva a intentarlo"
+			read moneda
+		done
 
-	if [ "$moneda" = "1" ]; then
-		if [ "${COTIZACION[0]}" = "0" ]; then
-			esta=false
-			echo "No hay cotizacion del euro para el dia de hoy"
-		else
-			divisa="euros"
-			cot=${COTIZACION[0]#"${COTIZACION[0]%%[!0]*}"}
-		fi
-	elif [ "$moneda" = "2" ]; then
-		if [ "${COTIZACION[2]}" = "0" ]; then
-			esta=false
-			echo "No hay cotizacion del dolar para el dia de hoy"
-		else
-			divisa="dolares"
-			cot=${COTIZACION[2]#"${COTIZACION[2]%%[!0]*}"}
-		fi
-	elif [ "$moneda" = "3" ];then
-		if [ "${COTIZACION[4]}" = "0" ]; then
-			esta=false
-			echo "No hay cotizacion del peso argentino para el dia de hoy"
-		else
-			divisa="pesos argentinos"
-			cot=${COTIZACION[4]#"${COTIZACION[4]%%[!0]*}"}
-		fi
-	elif [ "$moneda" = "4" ];then
-		if [ "${COTIZACION[6]}" = "0" ];then
-			esta=false
-			echo "No hay cotizacion del real para el dia de hoy"
-		else
-			divisa="reales"
-			cot=${COTIZACION[6]#"${COTIZACION[6]%%[!0]*}"}
-		fi
-	fi
+		echo "Ingrese monto de la moneda a vender (solo numeros enteros):"
+		read cantMoneda
+		while [ $cantMoneda -lt 1 ]; do
+			echo "Monto ingresado incorrecto, debe ser mayor a 0"
+			read cantMoneda
+		done
 
-	if [ "$esta" = "true" ]; then
-		uru=$(($cot * $cantMoneda))
-		uruDecimal=$(($uru % 100))
-		uruEntero=$(($uru / 100))
+		esta=true # Accede a una divisa que existe en el dia
 
-		echo "El monto a vender en pesos uruguayos es de $uruEntero,$uruDecimal"
-		echo "$hoy - Venta de $cantMoneda $divisa por $uruEntero,$uruDecimal pesos uruguayos" >> $VENTA
-		echo "Venta exitosa"
+		if [ "$moneda" = "1" ]; then
+			if [ "${COTIZACION[0]}" = "0" ]; then
+				esta=false
+				echo "No hay cotizacion del euro para el dia de hoy"
+			else
+				divisa="euros"
+				cot=${COTIZACION[0]#"${COTIZACION[0]%%[!0]*}"}
+			fi
+		elif [ "$moneda" = "2" ]; then
+			if [ "${COTIZACION[2]}" = "0" ]; then
+				esta=false
+				echo "No hay cotizacion del dolar para el dia de hoy"
+			else
+				divisa="dolares"
+				cot=${COTIZACION[2]#"${COTIZACION[2]%%[!0]*}"}
+			fi
+		elif [ "$moneda" = "3" ];then
+			if [ "${COTIZACION[4]}" = "0" ]; then
+				esta=false
+				echo "No hay cotizacion del peso argentino para el dia de hoy"
+			else
+				divisa="pesos argentinos"
+				cot=${COTIZACION[4]#"${COTIZACION[4]%%[!0]*}"}
+			fi
+		elif [ "$moneda" = "4" ];then
+			if [ "${COTIZACION[6]}" = "0" ];then
+				esta=false
+				echo "No hay cotizacion del real para el dia de hoy"
+			else
+				divisa="reales"
+				cot=${COTIZACION[6]#"${COTIZACION[6]%%[!0]*}"}
+			fi
+		fi
+
+		if [ "$esta" = "true" ]; then
+			uru=$(($cot * $cantMoneda))
+			uruDecimal=$(($uru % 100))
+			uruEntero=$(($uru / 100))
+
+			echo "El monto a vender en pesos uruguayos es de $uruEntero,$uruDecimal"
+			echo "$hoy - Venta de $cantMoneda $divisa por $uruEntero,$uruDecimal pesos uruguayos" >> $VENTA
+			echo "Venta exitosa"
+		fi
+	else
+		echo "Las transacciones de venta estan bloqueadas"
 	fi
 
 	echo ""
@@ -231,6 +260,7 @@ buscarFecha() {
 		echo "Mes ingresado incorrecto, debe estar entre el 1 y 12. Vuelva a intentarlo:"
 		read mes
 	done
+# Agregar que si meten 4 pasa el while pero agrego un 0 adelante
 
 	echo "Ingrese anio a buscar (yyyy):"
 	read anio
@@ -264,6 +294,10 @@ buscarDivisa() {
 		divisa="pesos argentinos"
 	elif [ "$moneda" = "4" ];then
 		divisa="reales"
+	else
+		echo "Opcion ingresada incorrecta, vuelva a intentarlo"
+		echo ""
+		buscarDivisa
 	fi
 
 	hayCompra="true"
@@ -287,13 +321,50 @@ buscarDivisa() {
 	menuPrincipal
 }
 
-bloquearTransacciones() {
-	if [ "$BLOQUEO" = "false" ]; then
+# buscarMonto() {
+	# Busca todos los montos en las transacciones que terminen en la parte decimal de pesos con 3 
+# }
 
-		BLOQUEO="true"
-		echo "Transacciones bloqueadas"
-	else
-		echo "Las transacciones ya estan bloqueadas"
+bloquearTransacciones() {
+	echo "Desea bloquear transacciones?"
+	echo "1-Si"
+	echo "2-No"
+	read confirmacion
+
+	if [ "$confirmacion" = "1" ]; then
+		echo "Que transacciones desea bloquear?"
+		echo "1-Compra"
+		echo "2-Venta"
+		echo "3-Ambas"
+		read op
+
+		if [ $op -lt 1 ] || [ $op -gt 3 ]; then
+			echo "Opcion ingresada incorrecta, vuelva a intentarlo"
+			echo ""
+			bloquearTransacciones
+		else
+			if [ "$op" = "1" ]; then
+				if [ "$BLOQUEOCOMPRA" = "false" ]; then
+					BLOQUEOCOMPRA="true"
+					chmod a-w $COMPRA
+					echo "Transacciones de compra bloqueadas"
+				else
+					echo "Las transacciones de compra ya estan bloqueadas"
+				fi
+			elif [ "$op" = "2" ]; then
+				if [ "$BLOQUEOVENTA" = "false" ]; then
+					BLOQUEOVENTA="true"
+					chmod a-w $VENTA
+					echo "Transacciones de venta bloqueadas"
+				else
+					echo "Las transacciones de venta ya estan bloqueadas"
+				fi
+			else
+				BLOQUEOCOMPRA="true"
+				BLOQUEOVENTA="true"
+				echo "Ambas transacciones estan bloqueadas"
+			fi
+		fi
 	fi
 
 	echo ""
@@ -301,12 +372,45 @@ bloquearTransacciones() {
 }
 
 desbloquearTransacciones() {
-	if [ "$BLOQUEO" = "true" ]; then
+	echo "Desea desbloquear transacciones?"
+	echo "1-Si"
+	echo "2-No"
+	read confirmacion
+	
+	if [ "$confirmacion" = "1" ]; then
+		echo "Que transacciones desea desbloquear?"
+		echo "1-Compra"
+		echo "2-Venta"
+		echo "3-Ambas"
+		read op
 
-		BLOQUEO="false"
-		echo "Transacciones desbloqueadas"
-	else
-		echo "Las transacciones ya estan desbloqueadas"
+		if [ $op -lt 1 ] || [ $op -gt 3 ]; then
+			echo "Opcion ingresada incorrecta, vuelva a intentarlo"
+			echo ""
+			bloquearTransacciones
+		else
+			if [ "$op" = "1" ]; then
+				if [ "$BLOQUEOCOMPRA" = "true" ]; then
+					BLOQUEOCOMPRA="false"
+					chmod a+w $COMPRA
+					echo "Transacciones de compra desbloqueadas"
+				else
+					echo "Las transacciones de compra ya estan desbloqueadas"
+				fi
+			elif [ "$op" = "2" ]; then
+				if [ "$BLOQUEOVENTA" = "true" ]; then
+					BLOQUEOVENTA="false"
+					chmod a+w $VENTA
+					echo "Transacciones de venta desbloqueadas"
+				else
+					echo "Las transacciones de venta ya estan desbloqueadas"
+				fi
+			else
+				BLOQUEOCOMPRA="false"
+				BLOQUEOVENTA="false"
+				echo "Ambas transacciones estan desbloqueadas"
+			fi
+		fi
 	fi
 
 	echo ""
@@ -346,7 +450,7 @@ menuPrincipal() {
 	elif [ $op = "0" ]; then
 		exit
 	else
-		echo "opcion ingresada incorrecta"
+		echo "Opcion ingresada incorrecta"
 		menuPrincipal
 	fi
 }
