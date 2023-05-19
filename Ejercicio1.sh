@@ -362,6 +362,8 @@ bloquearTransacciones() {
 			else
 				BLOQUEOCOMPRA="true"
 				BLOQUEOVENTA="true"
+				chmod a-w $COMPRA
+				chmod a-w $VENTA
 				echo "Ambas transacciones estan bloqueadas"
 			fi
 		fi
@@ -376,7 +378,7 @@ desbloquearTransacciones() {
 	echo "1-Si"
 	echo "2-No"
 	read confirmacion
-	
+
 	if [ "$confirmacion" = "1" ]; then
 		echo "Que transacciones desea desbloquear?"
 		echo "1-Compra"
@@ -408,6 +410,8 @@ desbloquearTransacciones() {
 			else
 				BLOQUEOCOMPRA="false"
 				BLOQUEOVENTA="false"
+				chmod a+w $COMPRA
+				chmod a-w $VENTA
 				echo "Ambas transacciones estan desbloqueadas"
 			fi
 		fi
