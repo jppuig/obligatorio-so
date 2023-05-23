@@ -321,9 +321,29 @@ buscarDivisa() {
 	menuPrincipal
 }
 
-# buscarMonto() {
-	# Busca todos los montos en las transacciones que terminen en la parte decimal de pesos con 3 
-# }
+buscarMonto() {
+	# Busca todos los montos en las transacciones que terminen en la parte decimal de pesos con 3
+	echo "Se buscan las transacciones que tengan montos finalizados en 3..."
+	hayCompra="true"
+	if [ -s $COMPRA ]; then
+		if [ "$(egrep -c ",[0-9]*+3\b" $COMPRA)" -gt "0" ]; then
+			echo "$(egrep -i ",[0-9]*+3\b" $COMPRA)"
+		else
+			hayCompra="false"
+		fi
+	fi
+
+	if [ -s $VENTA ]; then
+		if [ "$(egrep -c ",[0-9]*+3\b" $VENTA)" -gt "0" ]; then
+			echo "$(egrep -i ",[0-9]*+3\b" $VENTA)"
+		elif [ "$hayCompra" = "false" ]; then
+			echo "No hay registros del monto."
+		fi
+	fi
+
+	echo ""
+	menuPrincipal
+}
 
 bloquearTransacciones() {
 	echo "Desea bloquear transacciones?"
@@ -411,7 +431,7 @@ desbloquearTransacciones() {
 				BLOQUEOCOMPRA="false"
 				BLOQUEOVENTA="false"
 				chmod a+w $COMPRA
-				chmod a-w $VENTA
+				chmod a+w $VENTA
 				echo "Ambas transacciones estan desbloqueadas"
 			fi
 		fi
