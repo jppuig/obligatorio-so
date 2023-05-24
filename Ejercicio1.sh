@@ -14,75 +14,87 @@ BLOQUEOVENTA="false"
 cargarDivisas() {
 	hoy=$(date +%d/%m/%Y)
 	if  [ -s $DIVISAS ]; then # Chequea si existe archivo
-		egrep -i "^$hoy-(EUR|ARG|USD|BRL)-[0-9]{9}-[0-9]{9}-[A-Z]*" $DIVISAS > divisasHoy.txt
+		egrep -i "^$hoy-(EUR|ARG|USD|BRL)-[0-9]{9}-[0-9]{9}" $DIVISAS > divisasHoy.txt
 
-		lineasEuro=$(egrep -c "^$hoy-EUR-[0-9]{9}-[0-9]{9}-[A-Z]*" divisasHoy.txt) #Cuenta cuantas cotizaciones hay en el dia para el euro
+		lineasEuro=$(egrep -c "^$hoy-EUR-[0-9]{9}-[0-9]{9}" divisasHoy.txt) #Cuenta cuantas cotizaciones hay en el dia para el euro
 		if [ "$lineasEuro" = "0" ]; then 	#Caso que no haya cotizaciones
 			echo "$hoy Carga de euros no exitosa: no hay informacion de la divisa en el dia" > $CARGA #Sobreescribe el archivo para borrar lo anterior
 		elif [ "$lineasEuro" = "1" ]; then 	#Caso que hay una sola cotizacion
 			COTIZACION[0]=$(cat divisasHoy.txt | cut -d "-" -f 3)	#Guardo la divisa de compra para Euro
 			COTIZACION[1]=$(cat divisasHoy.txt | cut -d "-" -f 4)	#Guardo la divisa de venta para Euro
 
-			if [ "${COTIZACION[0]}" = "0" ] || [ "${COTIZACION[1]}" = "0" ]; then
+			compra=${COTIZACION[0]}
+			venta=${COTIZACION[1]}
+			if [ "$compra" -gt 0 ] && [ "$venta" -gt 0 ]; then
+				echo "Se cargaron las divisas de euros"
+				echo "$hoy La carga de euros fue exitosa" > $CARGA
+			else
 				COTIZACION[0] = 0
 				COTIZACION[1] = 0
-				echo "$hoy Carga de euros no exitosa: divisas incorrectas" > $CARGA
-			else
-				echo "$hoy La carga de euros fue exitosa" > $CARGA
+				echo "$hoy Carga de euros no exitosa: divisas incorrectas" > $CARGA			
 			fi
 		else	 #Caso que haya mas de una cotizacion
 			echo "$hoy Carga de euros no exitosa: mas de una cotizacion en el dia" > $CARGA
 		fi
 
-		lineasDolar=$(egrep -c "^$hoy-USD-[0-9]{9}-[0-9]{9}-[A-Z]*" divisasHoy.txt) 
+		lineasDolar=$(egrep -c "^$hoy-USD-[0-9]{9}-[0-9]{9}" divisasHoy.txt) 
 		if [ "$lineasDolar" = "0" ]; then 
 			echo "$hoy Carga de dolares no exitosa: no hay informacion de la divisa en el dia" >> $CARGA
 		elif [ "$lineasDolar" = "1" ]; then 
 			COTIZACION[2]=$(cat divisasHoy.txt | cut -d "-" -f 3)
 			COTIZACION[3]=$(cat divisasHoy.txt | cut -d "-" -f 4)
 
-			if [ "${COTIZACION[2]}" = "0" ] || [ "${COTIZACION[3]}" = "0" ]; then
+			compra=${COTIZACION[2]}
+			venta=${COTIZACION[3]}
+			if [ "$compra" -gt 0 ] && [ "$venta" -gt 0 ]; then
+				echo "Se cargaron las divisas de dolares"
+				echo "$hoy La carga de dolares fue exitosa" >> $CARGA
+			else
 				COTIZACION[2] = 0
 				COTIZACION[3] = 0
 				echo "$hoy Carga de dolares no exitosa: divisas incorrectas" >> $CARGA
-			else
-				echo "$hoy La carga de dolares fue exitosa" >> $CARGA
 			fi
 		else
 			echo "$hoy Carga de dolares no exitosa: mas de una cotizacion en el dia" >> $CARGA
 		fi
 
-		lineasArg=$(egrep -c "^$hoy-ARG-[0-9]{9}-[0-9]{9}-[A-Z]*" divisasHoy.txt)
+		lineasArg=$(egrep -c "^$hoy-ARG-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 		if [ "$lineasArg" = "0" ]; then
 			echo "$hoy Carga de pesos argentinos no exitosa: no hay informacion de la divisa en el dia" >> $CARGA
 		elif [ "$lineasArg" = "1" ]; then
 			COTIZACION[4]=$(cat divisasHoy.txt | cut -d "-" -f 3)	#Guardo la divisa de compra para Euro
 			COTIZACION[5]=$(cat divisasHoy.txt | cut -d "-" -f 4)	#Guardo la divisa de compra para Euro
 
-			if [ "${COTIZACION[4]}" = "0" ] || [ "${COTIZACION[5]}" = "0" ]; then
+			compra=${COTIZACION[4]}
+			venta=${COTIZACION[5]}
+			if [ "$compra" -gt 0 ] && [ "$venta" -gt 0 ]; then
+				echo "Se cargaron las divisas de pesos argentinos"
+				echo "$hoy La carga de pesos argentinos fue exitosa" >> $CARGA
+			else
 				COTIZACION[4] = 0
 				COTIZACION[5] = 0
 				echo "$hoy Carga de pesos argentinos no exitosa: divisas incorrectas" >> $CARGA
-			else
-				echo "$hoy La carga de pesos argentinos fue exitosa" >> $CARGA
 			fi
 		else
 			echo "$hoy Carga de pesos argentinos no exitosa: mas de una cotizacion en el dia" >> $CARGA
 		fi
 
-		lineasReal=$(egrep -c "^$hoy-BRL-[0-9]{9}-[0-9]{9}-[A-Z]*" divisasHoy.txt)
+		lineasReal=$(egrep -c "^$hoy-BRL-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 		if [ "$lineasReal" = "0" ]; then
 			echo "$hoy Carga de reales no exitosa: no hay informacion de la divisa en el dia" >> $CARGA
 		elif [ "$lineasReal" = "1" ]; then
 			COTIZACION[6]=$(cat divisasHoy.txt | cut -d "-" -f 3)	#Guardo la divisa de compra para Euro
 			COTIZACION[7]=$(cat divisasHoy.txt | cut -d "-" -f 4)	#Guardo la divisa de compra para Euro
 
-			if [ "${COTIZACION[6]}" = "0" ] || [ "${COTIZACION[7]}" = "0" ]; then
+			compra=${COTIZACION[6]}
+			venta=${COTIZACION[7]}
+			if [ "$compra" -gt 0 ] && [ "$venta" -gt 0 ]; then
+				echo "Se cargaron las divisas de reales"
+				echo "$hoy La carga de reales fue exitosa" >> $CARGA
+			else
 				COTIZACION[6] = 0
 				COTIZACION[7] = 0
 				echo "$hoy Carga de reales no exitosa: divisas incorrectas" >> $CARGA
-			else
-				echo "$hoy La carga de reales fue exitosa" >> $CARGA
 			fi
 		else
 			echo "$hoy Carga de reales no exitosa: mas de una cotizacion en el dia" >> $CARGA

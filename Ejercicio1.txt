@@ -1,8 +1,18 @@
 Documento informativo sobre el ejercicio 1
 
 Entradas:
+Tiene el siguiente formato: dd/mm/yyyy-(EUR|USD|ARG|BRL)-[0-9]{9}-[0-9]{9}
+Significa la Fecha-Divisa-Compra-Venta donde la compra y venta tienen 9 lugares,
+se toman los primeros 7 como la parte entera y los ultimos 2 como parte decimal
+Compra y venta de las divisas debe ser mayor a 0.
+Para una carga exitosa solo se permite una sola instancia de este formato en un día,
+si no hay en el día o hay más de una no se carga la divisa.
 
 Salidas:
+La carga de divisas se realiza por moneda independientemente 
+y se muestra en divisas.txt, además en pantalla se muestra confirmación.
+La venta y compra salen en el archivo VentaDeDivisas.txt y CompraDeDivisas.txt
+respectivamente, además de mostrarse en pantalla.
 
 Otros:
 
