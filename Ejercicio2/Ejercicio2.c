@@ -21,24 +21,18 @@ void* nodo2(void* x) {
     sem_post(&sem2);
     sem_post(&sem2);
     sem_post(&sem2);
-    // sem_post(&sem3a);
-    // sem_post(&sem3b);
-    // sem_post(&sem3c);
-    // sem_post(&sem3d);
 }
 void* nodo3a(void* x) {
     sem_wait(&sem2);
     printf("3a\n");
     sem_post(&sem3a);
     sem_post(&sem3a);
-    // sem_post(&sem5a);
 }
 void* nodo3b(void* x) {
     sem_wait(&sem2);
     printf("3b\n");
     sem_post(&sem3b);
     sem_post(&sem3b);
-    // sem_post(&sem5b);
 }
 void* nodo3c(void* x) {
     sem_wait(&sem2);

@@ -1,0 +1,18 @@
+{
+  "name": "docker",
+  "version": "1.0.0",
+  "description": "ORT",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Lucas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.3.0",
+    "nodemon": "^2.0.21",
+    "mongoose": "^7.0.2"
+  }
+}
