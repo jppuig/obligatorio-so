@@ -1,4 +1,5 @@
 procedure Main is
+-- Cada mesa como mutua exclusion para pedir y salir
    task mesa1 is
       entry pedir1;
       entry retirarse1;
