@@ -1,0 +1,13 @@
+services:
+  # .env:
+    # 
+  data:
+    image: mongo-express # o solo mongo
+    ports:
+      - 3001:3001
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: so
+      MONGO_INITDB_ROOT_PASSWORD: so
+
+volumes:
+  data:

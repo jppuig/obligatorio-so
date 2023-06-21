@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <Locations >
-  <Project>
-    <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_file>
+  <Project >
     <file_marker column=" 1" line=" 1" >
       <vfs_project />
       <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_file>
@@ -10,7 +9,75 @@
       <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
       <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
     </file_marker>
-    <file_marker current="true" column=" 1" line=" 3" >
+    <file_marker column=" 1" line=" 44" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 4" line=" 68" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 44" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 4" line=" 68" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 64" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 16" line=" 41" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 23" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 26" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 29" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 29" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 17" line=" 37" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 13" line=" 30" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 3" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 21" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 13" line=" 59" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 48" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 29" line=" 55" >
+      <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
+      <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 48" >
       <vfs_project>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\ejercicio3.gpr</vfs_project>
       <vfs_file>C:\Users\jppc1\Documents\ORT\2doAnio\Semestre4\Sistemas operativos\Obligatorio\obligatorio-so\Ejercicio3\src\main.adb</vfs_file>
     </file_marker>
