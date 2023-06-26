@@ -1,21 +1,13 @@
-with Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Calendar;
+with Ada.Calendar.Formatting;
 
 package body Aleatorio is
-
-   package Random_IO is new Ada.Text_IO.Float_IO (Num => Float);
-   package Integer_IO is new Ada.Text_IO.Integer_IO (Num => Integer);
-
-   function Num_Aleatorio (Min : Integer; Max : Integer) return Integer is
-      Gen_Float : Float;
-      Gen_Integer : Integer;
+   function Generador return Numero_Rango is
+      Random_Seed : constant Integer := Integer(Ada.Calendar.Formatting.Second(Ada.Calendar.Clock)) mod 3 + 1;
+      Random_Num : Numero_Rango;
    begin
-      Random_IO.Get (Item => Gen_Float);
-      Gen_Integer := Integer (Gen_Float);
-
-      -- Ajustar el número generado al rango deseado
-      Gen_Integer := Gen_Integer mod (Max - Min + 1) + Min;
-
-      return Gen_Integer;
-   end Num_Aleatorio;
-
+      Random_Num := Numero_Rango(Random_Seed);
+      return Random_Num;
+   end Generador;
 end Aleatorio;

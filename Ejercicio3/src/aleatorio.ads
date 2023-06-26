@@ -1,5 +1,5 @@
-with Ada.Text_IO;
-
 package Aleatorio is
-   function Num_Aleatorio (Min : Integer; Max : Integer) return Integer;
+   subtype Numero_Rango is Integer range 1 .. 3;
+
+   function Generador return Numero_Rango;
 end Aleatorio;

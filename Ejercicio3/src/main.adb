@@ -81,19 +81,18 @@ procedure Main is
    task equipo1 is
    end equipo1;
    task body equipo1 is
-      ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      ya_entro : Boolean_Array := (1 .. 3 => False);
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 1 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
-         Put_Line ("Hola");
          if prox = 1 then
             mesa1.pedir;
             sala.salirSala;
@@ -126,15 +125,15 @@ procedure Main is
    end equipo2;
    task body equipo2 is
       ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 2 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
          if prox = 1 then
@@ -169,15 +168,15 @@ procedure Main is
    end equipo3;
    task body equipo3 is
       ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 3 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
          if prox = 1 then
@@ -212,15 +211,15 @@ procedure Main is
    end equipo4;
    task body equipo4 is
       ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 4 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
          if prox = 1 then
@@ -255,15 +254,15 @@ procedure Main is
    end equipo5;
    task body equipo5 is
       ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 5 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
          if prox = 1 then
@@ -298,15 +297,15 @@ procedure Main is
    end equipo6;
    task body equipo6 is
       ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 6 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
          if prox = 1 then
@@ -341,15 +340,15 @@ procedure Main is
    end equipo7;
    task body equipo7 is
       ya_entro: Boolean_Array := (1 .. 3 => False);
-      prox: Integer;
+      prox : Aleatorio.Numero_Rango;
    begin
       while not (ya_entro(1) and ya_entro(2) and ya_entro(3)) loop
          sala.entrarSala;
          Put_Line ("Equipo 7 entra a la sala de espera");
 
-         prox := Num_Aleatorio(1, 3);
+         prox := Aleatorio.Generador;
          while ya_entro(prox) = True loop
-            prox := Num_Aleatorio(1, 3);
+            prox := Aleatorio.Generador;
          end loop;
 
          if prox = 1 then
