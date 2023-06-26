@@ -2,6 +2,9 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 with Aleatorio; use Aleatorio;
 
+--  Juan Pedro Puig - 281088
+--  Pedro Azambuja - 270218
+
 procedure Main is
 -- Definimos el tipo para poder inicializar en False
    type Boolean_Array is array(1 .. 3) of Boolean;

@@ -1,3 +1,6 @@
+# Juan Pedro Puig - 281088
+# Pedro Azambuja - 270218
+
 FROM node:latest
 
 COPY . .

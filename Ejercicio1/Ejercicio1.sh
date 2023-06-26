@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Juan Pedro Puig - 281088
+# Pedro Azambuja - 270218
+
 BASEPATH="."
 ENTRADA="$BASEPATH/entradas"
 SALIDA="$BASEPATH/salidas"

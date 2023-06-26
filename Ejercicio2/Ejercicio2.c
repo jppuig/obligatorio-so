@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <semaphore.h>
 
+// Juan Pedro Puig - 281088
+// Pedro Azambuja - 270218
+
 sem_t sem1, sem1b, sem2, sem3a, sem3b, sem3c, sem3d, sem4, sem5a, sem5b, sem5c, sem6, sem7;
 
 void* nodo1(void* x) {
