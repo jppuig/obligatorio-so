@@ -20,12 +20,15 @@ echo ""
 
 cargarDivisas() {
 	hoy=$(date +%d/%m/%Y)
+	cargaron="True"
+
 	if  [ -s $DIVISAS ]; then # Chequea si existe archivo
 		egrep -i "^$hoy-(EUR|ARG|USD|BRL)-[0-9]{9}-[0-9]{9}" $DIVISAS > divisasHoy.txt
 
 		lineasEuro=$(egrep -c "^$hoy-EUR-[0-9]{9}-[0-9]{9}" divisasHoy.txt) #Cuenta cuantas cotizaciones hay en el dia para el euro
 		if [ "$lineasEuro" = "0" ]; then 	#Caso que no haya cotizaciones
 			echo "$hoy Carga de euros no exitosa: no hay informacion de la divisa en el dia" >> $CARGA #Sobreescribe el archivo para borrar lo anterior
+			cargaron="False"
 		elif [ "$lineasEuro" = "1" ]; then 	#Caso que hay una sola cotizacion
 			cotEuro=$(egrep "^$hoy-EUR-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 			COTIZACION[0]=$(echo "$cotEuro" | cut -d "-" -f 3)	#Guardo la divisa de compra para Euro
@@ -40,15 +43,18 @@ cargarDivisas() {
 				echo 
 				COTIZACION[0]=0
 				COTIZACION[1]=0
-				echo "$hoy Carga de euros no exitosa: divisas incorrectas" > $CARGA			
+				echo "$hoy Carga de euros no exitosa: divisas incorrectas" >> $CARGA
+				cargaron="False"
 			fi
 		else	 #Caso que haya mas de una cotizacion
-			echo "$hoy Carga de euros no exitosa: mas de una cotizacion en el dia" > $CARGA
+			echo "$hoy Carga de euros no exitosa: mas de una cotizacion en el dia" >> $CARGA
+			cargaron="False"
 		fi
 
 		lineasDolar=$(egrep -c "^$hoy-USD-[0-9]{9}-[0-9]{9}" divisasHoy.txt) 
 		if [ "$lineasDolar" = "0" ]; then 
 			echo "$hoy Carga de dolares no exitosa: no hay informacion de la divisa en el dia" >> $CARGA
+			cargaron="False"
 		elif [ "$lineasDolar" = "1" ]; then
 			cotDolar=$(egrep "^$hoy-USD-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 			COTIZACION[2]=$(echo "$cotDolar" | cut -d "-" -f 3)
@@ -63,14 +69,17 @@ cargarDivisas() {
 				COTIZACION[2]=0
 				COTIZACION[3]=0
 				echo "$hoy Carga de dolares no exitosa: divisas incorrectas" >> $CARGA
+				cargaron="False"
 			fi
 		else
 			echo "$hoy Carga de dolares no exitosa: mas de una cotizacion en el dia" >> $CARGA
+			cargaron="False"
 		fi
 
 		lineasArg=$(egrep -c "^$hoy-ARG-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 		if [ "$lineasArg" = "0" ]; then
 			echo "$hoy Carga de pesos argentinos no exitosa: no hay informacion de la divisa en el dia" >> $CARGA
+			cargaron="False"
 		elif [ "$lineasArg" = "1" ]; then
 			cotPeso=$(egrep "^$hoy-ARG-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 			COTIZACION[4]=$(echo "$cotPeso" | cut -d "-" -f 3)	#Guardo la divisa de compra para Euro
@@ -85,14 +94,17 @@ cargarDivisas() {
 				COTIZACION[4]=0
 				COTIZACION[5]=0
 				echo "$hoy Carga de pesos argentinos no exitosa: divisas incorrectas" >> $CARGA
+				cargaron="False"
 			fi
 		else
 			echo "$hoy Carga de pesos argentinos no exitosa: mas de una cotizacion en el dia" >> $CARGA
+			cargaron="False"
 		fi
 
 		lineasReal=$(egrep -c "^$hoy-BRL-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 		if [ "$lineasReal" = "0" ]; then
 			echo "$hoy Carga de reales no exitosa: no hay informacion de la divisa en el dia" >> $CARGA
+			cargaron="False"
 		elif [ "$lineasReal" = "1" ]; then
 			cotReal=$(egrep "^$hoy-BRL-[0-9]{9}-[0-9]{9}" divisasHoy.txt)
 			COTIZACION[6]=$(echo "$cotReal" | cut -d "-" -f 3)	#Guardo la divisa de compra para Euro
@@ -107,14 +119,26 @@ cargarDivisas() {
 				COTIZACION[6]=0
 				COTIZACION[7]=0
 				echo "$hoy Carga de reales no exitosa: divisas incorrectas" >> $CARGA
+				cargaron="False"
 			fi
 		else
 			echo "$hoy Carga de reales no exitosa: mas de una cotizacion en el dia" >> $CARGA
+			cargaron="False"
 		fi
 
 		rm divisasHoy.txt
 	else
 		echo "$hoy - Carga de monedas no exitosa: No hay archivo de divisas" > $CARGA
+		cargaron="False"
+	fi
+
+	echo ""
+
+	if [ "$cargaron" = "True" ]; then
+		echo "Se cargaron las cuatro monedas correctamente."
+	else
+		echo "Al menos una moneda no se cargo correctamente, verificar en el archivo carga.txt en la carpeta salidas."
+		echo "Se pueden realizar operaciones con aquellas monedas que se cargaron correctamente."
 	fi
 
 	echo ""
